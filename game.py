@@ -45,3 +45,11 @@ class Bird:
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+
+# Pipe class
+class Pipe:
+    def __init__(self, x):
+        self.x = x
+        self.height = random.randint(100, SCREEN_HEIGHT - PIPE_GAP - 100)
+        self.top_rect = pygame.Rect(self.x, 0, PIPE_WIDTH, self.height)
+        self.bottom_rect = pygame.Rect(self.x, self.height + PIPE_GAP, PIPE_WIDTH, SCREEN_HEIGHT - self.height - PIPE_GAP)
