@@ -28,3 +28,20 @@ BIRD_IMAGE = pygame.transform.scale(BIRD_IMAGE, (50, 35))
 
 # Load fonts
 FONT = pygame.font.SysFont('Arial', 30)
+# Bird class
+class Bird:
+    def __init__(self):
+        self.image = BIRD_IMAGE
+        self.rect = self.image.get_rect()
+        self.rect.center = (100, SCREEN_HEIGHT // 2)
+        self.velocity = 0
+
+    def flap(self):
+        self.velocity = FLAP_STRENGTH
+
+    def update(self):
+        self.velocity += GRAVITY
+        self.rect.y += self.velocity
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
