@@ -53,3 +53,15 @@ class Pipe:
         self.height = random.randint(100, SCREEN_HEIGHT - PIPE_GAP - 100)
         self.top_rect = pygame.Rect(self.x, 0, PIPE_WIDTH, self.height)
         self.bottom_rect = pygame.Rect(self.x, self.height + PIPE_GAP, PIPE_WIDTH, SCREEN_HEIGHT - self.height - PIPE_GAP)
+
+    def update(self):
+        self.x -= PIPE_SPEED
+        self.top_rect.x = self.x
+        self.bottom_rect.x = self.x
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, GREEN, self.top_rect)
+        pygame.draw.rect(screen, GREEN, self.bottom_rect)
+
+    def collides_with(self, bird):
+        return self.top_rect.colliderect(bird.rect) or self.bottom_rect.colliderect(bird.rect)
